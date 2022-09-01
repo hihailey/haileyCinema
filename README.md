@@ -8,6 +8,18 @@ The First branch **_basic-design_** is for the app with basic design using Style
 
 The **_main branch(custom-design)_** is built with my custom design using CSS and Styled-components.
 
+## Setup
+
+To run this project, install it locally using yarn:
+
+```
+$ cd ../haileyCinema-main
+$ yarn install
+$ yarn start
+```
+
+## Description
+
 **Part 1️⃣**
 
 - Use OMDB APIs to get the data of movies
@@ -28,9 +40,7 @@ The **_main branch(custom-design)_** is built with my custom design using CSS an
 
 - Users can switch the movie in the modal box
 
-
 [Lets go to CINEMA](https://hailey-cinema.herokuapp.com/)
-
 
 ## Built With
 
