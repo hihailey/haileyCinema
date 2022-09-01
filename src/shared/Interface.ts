@@ -23,8 +23,7 @@ export interface Movie {
 export interface MovieData extends Movie {
   Genre: string;
   Released: string;
-  Director: string;
-  Writer: string;
   Runtime: string;
   Country: string;
+  Plot: string;
 }

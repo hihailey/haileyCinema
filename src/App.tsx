@@ -4,9 +4,8 @@ import { useState, useEffect } from "react";
 import { getMovieData, getMovieById } from "./APIActions";
 import Modal from "./components/Modal";
 import moment from "moment";
-import styled from "styled-components";
 import { Movie, MovieData, MovieList } from "./shared/Interface";
-import Pagination from "./components/Pagination";
+import Movies from "./components/Movies";
 
 function App() {
   const [movies, setMovies] = useState<MovieList>();
@@ -15,6 +14,8 @@ function App() {
   const [time, setTime] = useState<Number>(0);
   const [movieId, setMovieId] = useState(0);
   const [loader, setLoader] = useState(false);
+  const [firstMovies, setFirstMovies] = useState<Movie[]>();
+  const [secondMovies, setSecondMovies] = useState<Movie[]>();
 
   //Set login time
   useEffect(() => {
@@ -47,6 +48,33 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    setMovieList();
+    // eslint-disable-next-line
+  }, [movies]);
+
+  //Set movies for the left and right box
+  const setMovieList = () => {
+    let first = [];
+    let second = [];
+    if (movies?.Search && movies.Search.length > 0) {
+      const movieData = movies.Search;
+
+      let firstRow = Math.ceil(movieData.length / 2);
+      let secondRow = movieData.length - firstRow;
+
+      for (let i = 0; i < firstRow; i++) {
+        first.push(movieData[i]);
+      }
+      if (movieData.length > 1)
+        for (let j = secondRow; j < movieData.length; j++) {
+          second.push(movieData[j]);
+        }
+    }
+    setFirstMovies(first);
+    setSecondMovies(second);
+  };
+
   //Get movie info with movie id
   const getMovieInfo = async (id: any) => {
     //Set Loader till bring the data
@@ -61,8 +89,10 @@ function App() {
   };
 
   //Open Modal, send movie id
-  const openModal = () => {
+  const openModal = (e: Movie, i: number) => {
     setIsOpen(true);
+    getMovieInfo(e.imdbID);
+    setMovieId(i);
   };
 
   //Close Modal
@@ -70,6 +100,7 @@ function App() {
     setIsOpen(false);
   };
 
+  //Get Previous Movie
   const prevMovie = () => {
     let id = movies?.Search[movieId - 1]?.imdbID;
     if (id) {
@@ -78,6 +109,7 @@ function App() {
     }
   };
 
+  //Get Next Movie
   const nextMovie = () => {
     let id = movies?.Search[movieId + 1]?.imdbID;
     if (id) {
@@ -87,43 +119,26 @@ function App() {
   };
 
   return (
-    <>
-      <div>
-        <>The use of app :{time} seconds </>
-        <MainBox>
-          <h1>
-            Welcome to Hailey's Cinema
-            <span aria-label="movie">🎥</span>
-          </h1>
-          <p>
-            Let's search the movie title!<span aria-label="hand">👋</span>
-          </p>
-          <input
-            onChange={(e) => {
-              getMovieName(e);
-            }}
-            placeholder={"Search.."}
-          />
-          <p>{movies?.Response && <>{movies?.Error}</>}</p>
-        </MainBox>
+    <div className="main-wrapper">
+      <Movies data={firstMovies} openModal={openModal} />
 
-        <MovieBox>
-          {movies?.Search?.map((e: Movie, i: number) => (
-            <div
-              onClick={() => {
-                openModal();
-                getMovieInfo(e.imdbID);
-                setMovieId(i);
-              }}
-              key={i}
-            >
-              <li>{e.Title}</li>
-            </div>
-          ))}
-        </MovieBox>
+      <div className="main-box">
+        <h1>CINEMA</h1>
+        <p>FIND THE MOVIE YOU WANT</p>
+        <input
+          onChange={(e) => {
+            getMovieName(e);
+          }}
+          placeholder={"Search.."}
+        />
+        <p id="error">{movies?.Response && <>{movies?.Error}</>}</p>
 
-        <Pagination data={movies} />
+        <>THE TIME OF USE:{time}sec </>
+      </div>
 
+      <Movies data={secondMovies} openModal={openModal} />
+
+      {isOpen && (
         <Modal
           isOpen={isOpen}
           closeModal={closeModal}
@@ -132,39 +147,9 @@ function App() {
           next={nextMovie}
           loader={loader}
         />
-      </div>
-    </>
+      )}
+    </div>
   );
 }
-
-const MainBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  input {
-    width: 20vw;
-    padding: 8px;
-    border-radius: 8px;
-  }
-`;
-
-const MovieBox = styled.div`
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin: 12px;
-  div {
-    width: 100%;
-    border: 1px solid gray;
-    border-radius: 4px;
-    padding: 4px 8px;
-    cursor: pointer;
-    &:hover {
-      background-color: #c5e5f6;
-    }
-  }
-`;
 
 export default App;

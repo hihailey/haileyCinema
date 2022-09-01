@@ -5,7 +5,6 @@ const LoaderContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  /* animation: ; */
   height: 100%;
 `;
 const Load = styled.div`
@@ -14,6 +13,8 @@ const Load = styled.div`
   display: inline-block;
   vertical-align: top;
 `;
+
+//Loader animation
 function Loader() {
   return (
     <LoaderContainer>
@@ -25,12 +26,12 @@ function Loader() {
           xmlnsXlink="http://www.w3.org/1999/xlink"
           x="0px"
           y="0px"
-          width="24px"
-          height="30px"
+          width="50px"
+          height="50px"
           viewBox="0 0 24 30"
           xmlSpace="preserve"
         >
-          <rect x="0" y="13" width="4" height="5" fill="#333">
+          <rect x="0" y="13" width="4" height="5" fill="white">
             <animate
               attributeName="height"
               attributeType="XML"
@@ -48,7 +49,7 @@ function Loader() {
               repeatCount="indefinite"
             />
           </rect>
-          <rect x="10" y="13" width="4" height="5" fill="#333">
+          <rect x="10" y="13" width="4" height="5" fill="white">
             <animate
               attributeName="height"
               attributeType="XML"
@@ -66,7 +67,7 @@ function Loader() {
               repeatCount="indefinite"
             />
           </rect>
-          <rect x="20" y="13" width="4" height="5" fill="#333">
+          <rect x="20" y="13" width="4" height="5" fill="white">
             <animate
               attributeName="height"
               attributeType="XML"
