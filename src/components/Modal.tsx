@@ -42,14 +42,14 @@ function Modal({ data, isOpen, loader, closeModal, prev, next }: props) {
             <div className="movie-info-box">
               <div className="movie-header">
                 <div className="image-wrapper">
-                  <button
+                  <Button
                     onClick={prev}
                     style={{ transform: "rotate(180deg)" }}
                   >
                     {ButtonIcon}
-                  </button>
+                  </Button>
                   <img alt={movieInfo?.Title} src={movieInfo?.Poster} />
-                  <button onClick={next}>{ButtonIcon}</button>
+                  <Button onClick={next}>{ButtonIcon}</Button>
                 </div>
 
                 <div className="content-box">
@@ -79,6 +79,10 @@ const ModalLayout = styled.div<{ isOpen: boolean; img?: string }>`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+`;
+
+const Button = styled.button`
+  cursor: pointer;
 `;
 
 export default Modal;
