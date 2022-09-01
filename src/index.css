@@ -1,18 +1,62 @@
-@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inconsolata&display=swap");
 
 html {
   margin: 0;
-  font-family: "Titillium Web", sans-serif;
+  font-family: "Inconsolata", cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+body {
+  /* Full height */
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)),
+    url("/public/img/background.jpg");
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 h1,
-h2 {
+h2,
+p {
   margin: 0;
+}
+
+.main-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+}
+
+.main-box {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+  gap: 20px;
+}
+
+.main-box h1 {
+  font-family: "Inconsolata", cursive;
+  font-size: 10vw;
+}
+
+.main-box input {
+  font-family: "Inconsolata", cursive;
+  font-size: 1em;
+  padding: 10px;
+  border-radius: 12px;
+  border: none;
+}
+
+.movies-container {
+  font-family: "Bebas Neue", cursive;
+  display: grid;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
 }
