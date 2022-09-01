@@ -28,6 +28,10 @@ The **_main branch(custom-design)_** is built with my custom design using CSS an
 
 - Users can switch the movie in the modal box
 
+
+[Lets go to CINEMA](https://hailey-cinema.herokuapp.com/)
+
+
 ## Built With
 
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) ![Typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
