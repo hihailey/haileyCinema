@@ -5,7 +5,7 @@ import { getMovieData, getMovieById } from "./APIActions";
 import Modal from "./components/Modal";
 import moment from "moment";
 import { Movie, MovieData, MovieList } from "./shared/Interface";
-import Movies from "./Movies";
+import Movies from "./components/Movies";
 
 function App() {
   const [movies, setMovies] = useState<MovieList>();
@@ -50,7 +50,7 @@ function App() {
 
   useEffect(() => {
     setMovieList();
-    console.log(movies);
+    // eslint-disable-next-line
   }, [movies]);
 
   //Set movies for the left and right box
@@ -73,7 +73,6 @@ function App() {
     }
     setFirstMovies(first);
     setSecondMovies(second);
-    console.log(first, second);
   };
 
   //Get movie info with movie id
@@ -101,6 +100,7 @@ function App() {
     setIsOpen(false);
   };
 
+  //Get Previous Movie
   const prevMovie = () => {
     let id = movies?.Search[movieId - 1]?.imdbID;
     if (id) {
@@ -109,6 +109,7 @@ function App() {
     }
   };
 
+  //Get Next Movie
   const nextMovie = () => {
     let id = movies?.Search[movieId + 1]?.imdbID;
     if (id) {
@@ -119,8 +120,6 @@ function App() {
 
   return (
     <div className="main-wrapper">
-      {/* <>The use of app :{time} seconds </> */}
-
       <Movies data={firstMovies} openModal={openModal} />
 
       <div className="main-box">
@@ -132,19 +131,23 @@ function App() {
           }}
           placeholder={"Search.."}
         />
-        <p>{movies?.Response && <>{movies?.Error}</>}</p>
+        <p id="error">{movies?.Response && <>{movies?.Error}</>}</p>
+
+        <>THE TIME OF USE:{time}sec </>
       </div>
 
       <Movies data={secondMovies} openModal={openModal} />
 
-      <Modal
-        isOpen={isOpen}
-        closeModal={closeModal}
-        data={movieInfo}
-        prev={prevMovie}
-        next={nextMovie}
-        loader={loader}
-      />
+      {isOpen && (
+        <Modal
+          isOpen={isOpen}
+          closeModal={closeModal}
+          data={movieInfo}
+          prev={prevMovie}
+          next={nextMovie}
+          loader={loader}
+        />
+      )}
     </div>
   );
 }
