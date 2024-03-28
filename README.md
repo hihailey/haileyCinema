@@ -1,6 +1,6 @@
 ## Project Descriptions
 
-🎥 Cinema is a website that helps users find movies by movie title.
+🎥 Cinema is a single-page website that helps users find movies by movie title.
 
 There are **two branches**.
 
@@ -40,7 +40,7 @@ $ yarn start
 
 - Users can switch the movie in the modal box
 
-[Lets go to CINEMA](https://hailey-cinema.herokuapp.com/)
+[Lets go to CINEMA](https://haileycinema.onrender.com/)
 
 ## Built With
 
