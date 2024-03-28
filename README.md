@@ -1,4 +1,4 @@
-## SceneBox Techinal Assignment
+## Project Descriptions
 
 🎥 Cinema is a website that helps users find movies by movie title.
 
